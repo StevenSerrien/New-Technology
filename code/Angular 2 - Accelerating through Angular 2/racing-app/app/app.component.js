@@ -38,7 +38,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'racing-app',
-            template: "\n\n  <h1>{{heading}}</h1>\n  <ul>\n  <li *ngFor=\"let race of races\">\n  <h2>{{race.name}}</h2>\n  <p>{{race.date}}</p>\n  <p>{{race.about}}</p>\n  <button *ngIf=\"race.isRacing == false\" >Enter Race</button>\n    <h3 *ngIf=\"race.isRacing == true\">Already Racing</h3>\n</li>\n  </ul>\n  "
+            template: "\n<h1>{{heading}}</h1>\n<ul>\n  <li *ngFor=\"let race of races\">\n    <h2>{{race.name}} {{race.entryFee | currency:'USD':true }}</h2>\n    <p>{{race.date | date:'MMM d, y, h:mm a'}}</p>\n    <p>{{race.about}}</p>\n    <button *ngIf=\"!race.isRacing\">Enter Race</button>\n    <h3 *ngIf=\"race.isRacing\">Already Racing</h3>\n  </li>\n</ul>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

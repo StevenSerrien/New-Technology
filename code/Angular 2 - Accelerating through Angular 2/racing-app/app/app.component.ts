@@ -4,17 +4,16 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'racing-app',
   template: `
-
-  <h1>{{heading}}</h1>
-  <ul>
+<h1>{{heading}}</h1>
+<ul>
   <li *ngFor="let race of races">
-  <h2>{{race.name}}</h2>
-  <p>{{race.date}}</p>
-  <p>{{race.about}}</p>
-  <button *ngIf="race.isRacing == false" >Enter Race</button>
-    <h3 *ngIf="race.isRacing == true">Already Racing</h3>
-</li>
-  </ul>
+    <h2>{{race.name}} {{race.entryFee | currency:'USD':true }}</h2>
+    <p>{{race.date | date:'MMM d, y, h:mm a'}}</p>
+    <p>{{race.about}}</p>
+    <button *ngIf="!race.isRacing">Enter Race</button>
+    <h3 *ngIf="race.isRacing">Already Racing</h3>
+  </li>
+</ul>
   `
 })
 export class AppComponent {
@@ -41,5 +40,4 @@ export class AppComponent {
     "entryFee": 4300,
     "isRacing": false
   }];
-
- }
+}
