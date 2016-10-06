@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
         this.heading = "Ultra Racing Schedule";
+        this.cash = 10000;
         this.races = [{
                 "id": 1,
                 "name": "Daytona Thunderdome",
@@ -32,13 +33,24 @@ var AppComponent = (function () {
                 "date": new Date('2512-07-12T21:00:00'),
                 "about": "Fly between buildings in the electronic sky.",
                 "entryFee": 4300,
-                "isRacing": false
+                "isRacing": true
             }];
     }
+    // Write your function here
+    AppComponent.prototype.totalCost = function () {
+        var total = 0;
+        for (var _i = 0, _a = this.races; _i < _a.length; _i++) {
+            var race = _a[_i];
+            if (race.isRacing) {
+                total += race.entryFee;
+            }
+        }
+        return total;
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'racing-app',
-            template: "\n<h1>{{heading}}</h1>\n<ul>\n  <li *ngFor=\"let race of races\">\n    <h2>{{race.name}} {{race.entryFee | currency:'USD':true }}</h2>\n    <p>{{race.date | date:'MMM d, y, h:mm a'}}</p>\n    <p>{{race.about}}</p>\n    <button *ngIf=\"!race.isRacing\">Enter Race</button>\n    <h3 *ngIf=\"race.isRacing\">Already Racing</h3>\n  </li>\n</ul>\n  "
+            template: "\n  <h1>{{heading}}</h1>\n  <ul>\n    <li *ngFor=\"let race of races\">\n      <h2>{{race.name}} {{race.entryFee | currency:'USD':true}}</h2>\n      <p>{{race.date | date:'MMM d, y, h:MM a'}}</p>\n      <p>{{race.about}}</p>\n      <button *ngIf=\"!race.isRacing\">Enter Race</button>\n      <h3 *ngIf=\"race.isRacing\">Already Racing</h3>\n    </li>\n  </ul>\n  <h2>Total cost: {{totalCost() | currency:'USD':true}}</h2>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

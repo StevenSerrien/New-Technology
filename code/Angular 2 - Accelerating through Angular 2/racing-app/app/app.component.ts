@@ -4,20 +4,22 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'racing-app',
   template: `
-<h1>{{heading}}</h1>
-<ul>
-  <li *ngFor="let race of races">
-    <h2>{{race.name}} {{race.entryFee | currency:'USD':true }}</h2>
-    <p>{{race.date | date:'MMM d, y, h:mm a'}}</p>
-    <p>{{race.about}}</p>
-    <button *ngIf="!race.isRacing">Enter Race</button>
-    <h3 *ngIf="race.isRacing">Already Racing</h3>
-  </li>
-</ul>
+  <h1>{{heading}}</h1>
+  <ul>
+    <li *ngFor="let race of races">
+      <h2>{{race.name}} {{race.entryFee | currency:'USD':true}}</h2>
+      <p>{{race.date | date:'MMM d, y, h:MM a'}}</p>
+      <p>{{race.about}}</p>
+      <button *ngIf="!race.isRacing">Enter Race</button>
+      <h3 *ngIf="race.isRacing">Already Racing</h3>
+    </li>
+  </ul>
+  <h2>Total cost: {{totalCost() | currency:'USD':true}}</h2>
   `
 })
 export class AppComponent {
   heading = "Ultra Racing Schedule"
+  cash = 10000;
   races = [{
     "id": 1,
     "name": "Daytona Thunderdome",
@@ -38,6 +40,17 @@ export class AppComponent {
     "date": new Date('2512-07-12T21:00:00'),
     "about": "Fly between buildings in the electronic sky.",
     "entryFee": 4300,
-    "isRacing": false
+    "isRacing": true
   }];
+  // Write your function here
+  totalCost() {
+    let total = 0;
+    for (let race of this.races){
+      if(race.isRacing){
+        total += race.entryFee;
+      }
+    }
+    return total;
+  }
+
 }
