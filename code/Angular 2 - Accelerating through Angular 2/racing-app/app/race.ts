@@ -6,4 +6,6 @@ export class Race {
   about: string;
   entryFee: number;
   isRacing: boolean;
+  image: string;
+  imageDescription: string;
 }
