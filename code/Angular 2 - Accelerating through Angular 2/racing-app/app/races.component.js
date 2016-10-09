@@ -9,14 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var mock_1 = require('./mock');
+/** Not needed anymore. - import { RACES } from './mock'; */
+/** Import the service to be make an instance of it later on in the constructor. */
+var race_service_1 = require('./race.service');
 var RacesComponent = (function () {
-    function RacesComponent() {
+    /** Make an instance of service class RaceService to use its methods. */
+    function RacesComponent(raceService) {
+        this.raceService = raceService;
         this.heading = "Ultra Racing Schedule";
         this.cash = 10000;
     }
     RacesComponent.prototype.ngOnInit = function () {
-        this.races = mock_1.RACES;
+        this.races = this.raceService.getRaces();
     };
     RacesComponent.prototype.totalCost = function () {
         var sum = 0;
@@ -47,7 +51,7 @@ var RacesComponent = (function () {
             templateUrl: 'app/races.component.html',
             styleUrls: ['app/races.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [race_service_1.RaceService])
     ], RacesComponent);
     return RacesComponent;
 }());

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Race } from './race';
-import { RACES } from './mock';
+/** Not needed anymore. - import { RACES } from './mock'; */
+/** Import the service to be make an instance of it later on in the constructor. */
+import { RaceService } from './race.service';
 
 @Component({
   selector: 'my-races',
@@ -12,8 +14,11 @@ export class RacesComponent {
   cash = 10000;
   races: Race[];
 
+  /** Make an instance of service class RaceService to use its methods. */
+  constructor(private raceService: RaceService){}
+
   ngOnInit() {
-    this.races = RACES;
+    this.races = this.raceService.getRaces();
   }
 
   totalCost() {
