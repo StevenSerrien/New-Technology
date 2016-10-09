@@ -51,7 +51,8 @@ var RacesComponent = (function () {
     RacesComponent = __decorate([
         core_1.Component({
             selector: 'my-races',
-            template: "\n    <h2>Cash left to enter races: {{cashLeft() | currency:'USD':true}} </h2>\n    <ul>\n      <li *ngFor=\"let race of races\">\n        <h2>{{race.name}} {{race.entryFee | currency:'USD':true}}</h2>\n        <p>{{race.date | date:'MMM d, y, h:MM a'}}</p>\n        <p>{{race.about}}</p>\n        <button *ngIf=\"!race.isRacing\">Enter Race</button>\n        <h3 *ngIf=\"race.isRacing\">Already Racing</h3>\n      </li>\n    </ul>\n    <h2>Total cost: {{totalCost() | currency:'USD':true}}</h2>\n  "
+            templateUrl: 'app/races.component.html',
+            styleUrls: ['app/races.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], RacesComponent);
