@@ -5,19 +5,16 @@ import { RACES } from './mock';
 @Component({
   selector: 'my-races',
   templateUrl: 'app/races.component.html',
-  styleUrls: ['app/races.component.css']
+  styleUrls:['app/races.component.css']
 })
 export class RacesComponent {
   heading = "Ultra Racing Schedule"
   cash = 10000;
-  /** Here we format variable races into the model class Race*/
   races: Race[];
 
   ngOnInit() {
     this.races = RACES;
   }
-
-
 
   totalCost() {
     let sum = 0;
@@ -29,6 +26,20 @@ export class RacesComponent {
 
   cashLeft() {
     return this.cash - this.totalCost();
+  }
+  cancelRace(race){
+    race.isRacing = false;
+  }
+
+  enterRace(race){
+    if(this.cashLeft() > race.entryFee)
+      {
+        race.isRacing = true;
+      }
+    else
+      {
+        alert("You don't have enough cash.");
+      }
   }
 
 }
