@@ -10,16 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var mock_1 = require('./mock');
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+/** transform the items emitted by an Observable by applying a function to each item */
+require('rxjs/add/operator/map');
 /** Define this service as an injectable */
 var RaceService = (function () {
-    function RaceService() {
+    function RaceService(http) {
+        this.http = http;
     }
     RaceService.prototype.getRaces = function () {
+        return this.http.get('app/races.json')
+            .map(function (response) { return response.json().racesData; });
+    };
+    RaceService.prototype.getRacesfromMocks = function () {
         return mock_1.RACES;
     };
     RaceService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], RaceService);
     return RaceService;
 }());

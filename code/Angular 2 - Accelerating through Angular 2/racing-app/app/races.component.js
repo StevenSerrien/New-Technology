@@ -20,14 +20,19 @@ var RacesComponent = (function () {
         this.cash = 10000;
     }
     RacesComponent.prototype.ngOnInit = function () {
-        this.races = this.raceService.getRaces();
+        var _this = this;
+        this.raceService.getRaces()
+            .subscribe(function (racesData) { return _this.races = racesData; });
+        /**this.races = this.raceService.getRacesfromMocks();*/
     };
     RacesComponent.prototype.totalCost = function () {
         var sum = 0;
-        for (var _i = 0, _a = this.races; _i < _a.length; _i++) {
-            var race = _a[_i];
-            if (race.isRacing)
-                sum += race.entryFee;
+        if (Array.isArray(this.races)) {
+            for (var _i = 0, _a = this.races; _i < _a.length; _i++) {
+                var race = _a[_i];
+                if (race.isRacing)
+                    sum += race.entryFee;
+            }
         }
         return sum;
     };

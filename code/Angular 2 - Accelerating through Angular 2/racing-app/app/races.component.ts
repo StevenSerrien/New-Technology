@@ -18,14 +18,21 @@ export class RacesComponent {
   constructor(private raceService: RaceService){}
 
   ngOnInit() {
-    this.races = this.raceService.getRaces();
+
+    this.raceService.getRaces()
+            .subscribe(racesData => this.races = racesData);
+
+    /**this.races = this.raceService.getRacesfromMocks();*/
   }
 
   totalCost() {
     let sum = 0;
-    for (let race of this.races) {
-      if (race.isRacing) sum += race.entryFee;
+    if (Array.isArray(this.races)) {
+      for (let race of this.races) {
+        if (race.isRacing) sum += race.entryFee;
+      }
     }
+
     return sum;
   }
 
