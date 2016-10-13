@@ -12,8 +12,11 @@ var platform_browser_1 = require('@angular/platform-browser');
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var forms_1 = require('@angular/forms');
+var router_1 = require('@angular/router');
 var app_component_1 = require('./app.component');
 var races_component_1 = require('./races.component');
+var scoreboard_component_1 = require('./scoreboard.component');
+var about_component_1 = require('./about.component');
 var race_service_1 = require('./race.service');
 var AppModule = (function () {
     function AppModule() {
@@ -23,11 +26,18 @@ var AppModule = (function () {
             imports: [
                 http_1.HttpModule,
                 platform_browser_1.BrowserModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                router_1.RouterModule.forRoot([
+                    { path: '', component: about_component_1.AboutComponent },
+                    { path: 'schedule', component: races_component_1.RacesComponent },
+                    { path: 'scoreboard', component: scoreboard_component_1.ScoreboardComponent }
+                ])
             ],
             declarations: [
                 app_component_1.AppComponent,
-                races_component_1.RacesComponent
+                races_component_1.RacesComponent,
+                about_component_1.AboutComponent,
+                scoreboard_component_1.ScoreboardComponent
             ],
             providers: [
                 race_service_1.RaceService
