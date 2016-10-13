@@ -7,9 +7,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { RacesComponent } from './races.component';
 import { ScoreboardComponent } from './scoreboard.component';
+import { ScoreboardItemComponent } from './scoreboardItem.component';
 import { AboutComponent } from './about.component';
 
 import { RaceService } from './race.service';
+import { RaceScoreService } from './raceScore.service';
 
 @NgModule({
   imports: [
@@ -26,11 +28,12 @@ import { RaceService } from './race.service';
     AppComponent,
     RacesComponent,
     AboutComponent,
-    ScoreboardComponent
-
+    ScoreboardComponent,
+    ScoreboardItemComponent
   ],
   providers: [
-    RaceService
+    RaceService,
+    RaceScoreService
   ],
   bootstrap: [
     AppComponent

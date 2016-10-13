@@ -16,8 +16,10 @@ var router_1 = require('@angular/router');
 var app_component_1 = require('./app.component');
 var races_component_1 = require('./races.component');
 var scoreboard_component_1 = require('./scoreboard.component');
+var scoreboardItem_component_1 = require('./scoreboardItem.component');
 var about_component_1 = require('./about.component');
 var race_service_1 = require('./race.service');
+var raceScore_service_1 = require('./raceScore.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,10 +39,12 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 races_component_1.RacesComponent,
                 about_component_1.AboutComponent,
-                scoreboard_component_1.ScoreboardComponent
+                scoreboard_component_1.ScoreboardComponent,
+                scoreboardItem_component_1.ScoreboardItemComponent
             ],
             providers: [
-                race_service_1.RaceService
+                race_service_1.RaceService,
+                raceScore_service_1.RaceScoreService
             ],
             bootstrap: [
                 app_component_1.AppComponent
