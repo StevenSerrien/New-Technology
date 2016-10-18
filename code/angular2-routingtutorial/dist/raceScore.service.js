@@ -78,13 +78,13 @@ var RaceScoreService = (function () {
         values.forEach(function (updateableScore) { return updateableScore.updateScore(); });
     };
     RaceScoreService.prototype.getScores = function () {
-        return this.http.get('app/scoreboard/raceScores.json')
+        return this.http.get('app/raceScores.json')
             .map(function (response) { return response.json(); });
     };
     RaceScoreService.prototype.getScoreForRace = function (raceId) {
         var _this = this;
         var newScore = new Subject_1.Subject();
-        this.http.get('app/scoreboard/raceScores.json')
+        this.http.get('app/raceScores.json')
             .map(function (response) {
             var scores = response.json();
             var foundScore = scores.find(function (i) { return i.raceId === raceId; });

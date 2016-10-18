@@ -1,0 +1,7 @@
+.scoreboard-item {
+  border: 1px solid red;
+}
+
+.scoreboard-item.finished {
+  border: 1px solid green;
+}
